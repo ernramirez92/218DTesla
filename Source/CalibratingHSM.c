@@ -6,7 +6,8 @@
    2.0.1
 
  Description
-   This is a template file for implementing state machines.
+   This is the lower-level calibrating state machine.
+	 The purpose of this state machine is to calibrate the motors on the crimping machine.
 
  Notes
 
