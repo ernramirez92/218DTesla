@@ -79,6 +79,11 @@ __heap_limit
 ;
 ;******************************************************************************
         EXTERN  SysTickIntHandler
+		EXTERN  CANIntHandler
+		EXTERN  Encoder1A_ISR
+		EXTERN  Encoder1I_ISR
+		EXTERN  Encoder2A_ISR
+		EXTERN  Encoder2I_ISR
 ;        EXTERN  UARTStdioIntHandler
 
 ;******************************************************************************
@@ -143,7 +148,7 @@ __Vectors
         DCD     IntDefaultHandler           ; Timer 3 subtimer B
         DCD     IntDefaultHandler           ; I2C1 Master and Slave
         DCD     IntDefaultHandler           ; Quadrature Encoder 1
-        DCD     IntDefaultHandler           ; CAN0
+        DCD     CANIntHandler           ; CAN0
         DCD     IntDefaultHandler           ; CAN1
         DCD     0                           ; Reserved
         DCD     0                           ; Reserved
@@ -198,10 +203,10 @@ __Vectors
         DCD     0                           ; Reserved
         DCD     IntDefaultHandler           ; Timer 5 subtimer A
         DCD     IntDefaultHandler           ; Timer 5 subtimer B
-        DCD     IntDefaultHandler           ; Wide Timer 0 subtimer A
-        DCD     IntDefaultHandler           ; Wide Timer 0 subtimer B
-        DCD     IntDefaultHandler           ; Wide Timer 1 subtimer A
-        DCD     IntDefaultHandler           ; Wide Timer 1 subtimer B
+        DCD     Encoder1A_ISR           ; Wide Timer 0 subtimer A
+        DCD     Encoder1I_ISR           ; Wide Timer 0 subtimer B
+        DCD     Encoder2A_ISR           ; Wide Timer 1 subtimer A
+        DCD     Encoder2I_ISR           ; Wide Timer 1 subtimer B
         DCD     IntDefaultHandler           ; Wide Timer 2 subtimer A
         DCD     IntDefaultHandler           ; Wide Timer 2 subtimer B
         DCD     IntDefaultHandler           ; Wide Timer 3 subtimer A
