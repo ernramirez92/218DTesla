@@ -69,7 +69,7 @@
 #define CAN_TX_PIN_HI GPIO_PIN_5
 
 #define CAN_BITRATE 500000
-#define CAN_TEST
+//#define CAN_TEST
 
 #define CAN_MESSAGE_LENGTH 8
 
