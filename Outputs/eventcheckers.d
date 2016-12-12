@@ -17,3 +17,5 @@
 .\outputs\eventcheckers.o: .\Headers\bitdefs.h
 .\outputs\eventcheckers.o: .\Headers\Bin_Const.h
 .\outputs\eventcheckers.o: .\Headers\EventCheckers.h
+.\outputs\eventcheckers.o: .\Headers\PWM0_Tiva.h
+.\outputs\eventcheckers.o: .\Headers\Motors.h

@@ -39,6 +39,8 @@
 // actual functionsdefinition
 #include "EventCheckers.h"
 
+#include "PWM0_Tiva.h"
+#include "Motors.h"
 
 // This is the event checking function sample. It is not intended to be 
 // included in the module. It is only here as a sample to guide you in writing
@@ -132,7 +134,39 @@ bool Check4Keystroke(void)
 		} else if(key == 's'){
 			KeyboardEvent.EventType = ES_SPINNING;
 			PostMasterSM(KeyboardEvent);
+		} 
+		
+		// Ernesto
+		else if(key == '1'){
+			PWM0_SetDuty(50);
+			printf("Motor Duty: 50 percent\n\r");
 		}
+		else if(key == '2'){
+			PWM0_SetDuty(0);
+			printf("Motor Duty: 0 percent\n\r");
+		}
+		else if(key == '3'){
+			Motor1Enable(true);
+			printf("Motor Enabled\n\r");
+		}
+		else if(key == '4'){
+			Motor1Enable(false);
+			printf("Motor Disabled\n\r");
+		}
+		else if(key == '5'){
+			Motor1Direction(MOTOR1_FORWARD);
+			printf("Motor Direction: Forward\n\r");
+		}
+		else if(key == '6'){
+			Motor1Direction(MOTOR1_REVERSE);
+			printf("Motor Direction: Reverse\n\r");
+		}
+//		else if(key == '7'){
+//			Motor1Enable(false);
+//		}
+//		else if(key == '8'){
+//			Motor1Enable(false);
+//		}		
 
 		
 //    PostMapKeys( ThisEvent );
