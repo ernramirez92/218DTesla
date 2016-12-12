@@ -10,10 +10,3 @@
 .\outputs\es_postlist.o: .\Headers\Bin_Const.h
 .\outputs\es_postlist.o: .\Headers\ES_Types.h
 .\outputs\es_postlist.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
-.\outputs\es_postlist.o: .\Headers\ES_Configure.h
-.\outputs\es_postlist.o: .\Headers\ES_General.h
-.\outputs\es_postlist.o: .\Headers\ES_PostList.h
-.\outputs\es_postlist.o: .\Headers\ES_Events.h
-.\outputs\es_postlist.o: .\Headers\ES_ServiceHeaders.h
-.\outputs\es_postlist.o: .\Headers\MapKeys.h
-.\outputs\es_postlist.o: .\Headers\MasterHSM.h

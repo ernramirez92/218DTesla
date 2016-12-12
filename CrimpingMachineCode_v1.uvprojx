@@ -147,7 +147,7 @@
             <RestoreSysVw>1</RestoreSysVw>
           </Target>
           <RunDebugAfterBuild>0</RunDebugAfterBuild>
-          <TargetSelection>8</TargetSelection>
+          <TargetSelection>3</TargetSelection>
           <SimDlls>
             <CpuDll></CpuDll>
             <CpuDllArguments></CpuDllArguments>
@@ -458,6 +458,41 @@
               <FileType>1</FileType>
               <FilePath>.\Source\WaitingForModeSelect.c</FilePath>
             </File>
+            <File>
+              <FileName>ADMulti.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Source\ADMulti.c</FilePath>
+            </File>
+            <File>
+              <FileName>CAN.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Source\CAN.c</FilePath>
+            </File>
+            <File>
+              <FileName>EnablePA25_PB23_PD7_PF0.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Source\EnablePA25_PB23_PD7_PF0.c</FilePath>
+            </File>
+            <File>
+              <FileName>Encoders.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Source\Encoders.c</FilePath>
+            </File>
+            <File>
+              <FileName>Hardware.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Source\Hardware.c</FilePath>
+            </File>
+            <File>
+              <FileName>Motors.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Source\Motors.c</FilePath>
+            </File>
+            <File>
+              <FileName>PWM0_Tiva.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Source\PWM0_Tiva.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -482,11 +517,6 @@
               <FileName>ES_CheckEvents.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Headers\ES_CheckEvents.h</FilePath>
-            </File>
-            <File>
-              <FileName>ES_Configure.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Headers\ES_Configure.h</FilePath>
             </File>
             <File>
               <FileName>ES_DeferRecall.h</FileName>
@@ -597,6 +627,41 @@
               <FileName>WaitingForModeSelect.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Headers\WaitingForModeSelect.h</FilePath>
+            </File>
+            <File>
+              <FileName>ADMulti.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Headers\ADMulti.h</FilePath>
+            </File>
+            <File>
+              <FileName>CAN.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Headers\CAN.h</FilePath>
+            </File>
+            <File>
+              <FileName>EnablePA25_PB23_PD7_PF0.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Headers\EnablePA25_PB23_PD7_PF0.h</FilePath>
+            </File>
+            <File>
+              <FileName>Encoders.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Headers\Encoders.h</FilePath>
+            </File>
+            <File>
+              <FileName>Hardware.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Headers\Hardware.h</FilePath>
+            </File>
+            <File>
+              <FileName>Motors.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Headers\Motors.h</FilePath>
+            </File>
+            <File>
+              <FileName>PWM0_Tiva.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Headers\PWM0_Tiva.h</FilePath>
             </File>
           </Files>
         </Group>
