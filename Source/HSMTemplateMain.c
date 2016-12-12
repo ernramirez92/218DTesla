@@ -26,6 +26,7 @@
 ****************************************************************************/
 #include <stdint.h>
 #include <stdbool.h>
+#include <Hardware.h>
 
 #include "driverlib/sysctl.h"
 /*
@@ -64,7 +65,7 @@ int main (void)
 	printf("Template for HSM implementation\r\n");
 	printf("%s %s\n",__TIME__, __DATE__);
 	printf("\n\r\n");
-
+	InitAll();
 // now initialize the Events and Services Framework and start it running
   ErrorType = ES_Initialize(ES_Timer_RATE_10mS);
   if ( ErrorType == Success ) {
