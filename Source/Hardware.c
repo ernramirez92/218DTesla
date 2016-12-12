@@ -52,7 +52,7 @@ void InitAll(void) {
 	PortFunctionInit();
 	InitPorts();
 	InitMotors();
-	InitCAN();
+//	InitCAN();
 	PWM0_Init();
 	PWM1_Init();
 	InitEncoders();
