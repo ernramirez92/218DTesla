@@ -10,7 +10,7 @@
 
 // typedefs for the states
 // State definitions for use with the query function
-typedef enum { STATE_ZERO, STATE_ONE, STATE_TWO } CrimpingState_t ;
+typedef enum { STATE_ONE_CRIMPING, STATE_TWO_CRIMPING } CrimpingState_t ;
 
 
 // Public Function Prototypes

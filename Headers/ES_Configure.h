@@ -263,7 +263,7 @@ typedef enum {  ES_NO_EVENT = 0,
 								ES_EXIT_BUTTON,
 								ES_MOTORS_ZEROED,
 								ES_SPINNING,	//for testing
-                ES_LOCK,
+                ES_LOCK,			//this is a dummy event used for setting up intial HSM structure. Make sure all instances are deleted before finalizing code
                 ES_UNLOCK} ES_EventTyp_t ;
 
 /****************************************************************************/
