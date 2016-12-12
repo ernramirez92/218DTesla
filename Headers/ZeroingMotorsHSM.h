@@ -10,7 +10,7 @@
 
 // typedefs for the states
 // State definitions for use with the query function
-typedef enum { STATE_ZERO, STATE_ONE, STATE_TWO } ZeroingState_t ;
+typedef enum { STATE_ONE_ZEROING, STATE_TWO_ZEROING } ZeroingState_t ;
 
 
 // Public Function Prototypes

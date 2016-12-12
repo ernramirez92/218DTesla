@@ -30,11 +30,11 @@
 #include "ES_Configure.h"
 #include "ES_Framework.h"
 #include "MasterHSM.h"
-//#include "WaitingForModeSelect.h"
+#include "WaitingForModeSelect.h"
 #include "CalibratingHSM.h"
-//#include "TestingHSM.h"
-//#include "CrimpingHSM.h"
-//#include "ZeroingMotorsHSM.h"
+#include "TestingHSM.h"
+#include "CrimpingHSM.h"
+#include "ZeroingMotorsHSM.h"
 
 
 /*----------------------------- Module Defines ----------------------------*/
@@ -146,7 +146,6 @@ ES_Event RunMasterSM( ES_Event CurrentEvent )
          //process any events
          if ( CurrentEvent.EventType != ES_NO_EVENT ) //If an event is active
          {
-					 puts("Checking switch events in WAITING_FOR_MODE_SELECT in MasterHSM\r\n");
             switch (CurrentEvent.EventType)
             {
                case ES_CALIBRATING_MODE_BUTTON : //If event is event one
@@ -194,15 +193,15 @@ ES_Event RunMasterSM( ES_Event CurrentEvent )
 					 // processed here allow the lowere level state machines to re-map
 					 // or consume the event
 					 CurrentEvent = DuringCalibrating(CurrentEvent);
-					 puts("Finished DuringCalibrating call in CALIBRATING state of MasterHSM\r\n");
-					 printf("Event was %d\r\n", CurrentEvent); 
+//					 puts("Finished DuringCalibrating call in CALIBRATING state of MasterHSM\r\n");
+//					 printf("Event was %d\r\n", CurrentEvent); 
 				 //process any events
 					 if ( CurrentEvent.EventType != ES_NO_EVENT ) //If an event is active
 					 {
-						 	puts("DuringCalibrating returned some event\r\n");
+//						 	puts("DuringCalibrating returned some event\r\n");
 							switch (CurrentEvent.EventType)
 							{
-								 puts("Switching events in CALIBRATING in MasterHSM\r\n");
+//								 puts("Switching events in CALIBRATING in MasterHSM\r\n");
 								 case ES_EXIT_BUTTON : //If event is event one !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 										// Execute action function for state one : event one
 										NextState = ZEROING_MOTORS;//Decide what the next state will be
@@ -217,7 +216,7 @@ ES_Event RunMasterSM( ES_Event CurrentEvent )
 									// repeat cases as required for relevant events
 							}
 					 } else {
-						 puts("DuringCalibrating returned ES_NO_EVENT\r\n");
+//						 puts("DuringCalibrating returned ES_NO_EVENT\r\n");
 					 }
 				break;
 				 
@@ -391,7 +390,6 @@ static ES_Event DuringWaitingForModeSelect( ES_Event Event)
         // repeat for any concurrent lower level machines
       
         // do any activity that is repeated as long as we are in this state
-			puts("Hanging out in WaitingForModeSelect (in During Function)\r\n");
     }
     // return either Event, if you don't want to allow the lower level machine
     // to remap the current event, or ReturnEvent if you do want to allow it.
@@ -403,7 +401,7 @@ static ES_Event DuringWaitingForModeSelect( ES_Event Event)
  ***************************************************************************/
 static ES_Event DuringCalibrating( ES_Event Event)
 {
-	puts("Inside DuringCalibrating in MasterHSM\r\n");
+//	puts("Inside DuringCalibrating in MasterHSM\r\n");
     ES_Event ReturnEvent = Event; // assme no re-mapping or comsumption
 
     // process ES_ENTRY, ES_ENTRY_HISTORY & ES_EXIT events
@@ -414,7 +412,7 @@ static ES_Event DuringCalibrating( ES_Event Event)
         
         // after that start any lower level machines that run in this state
         //StartLowerLevelSM( Event );
-				puts("Instructing MasterHSM to RunCalibratingSM(Event) from if clause\r\n");
+//				puts("Instructing MasterHSM to RunCalibratingSM(Event) from if clause\r\n");
         StartCalibratingSM(Event);
         // repeat the StartxxxSM() functions for concurrent state machines
         // on the lower level
@@ -423,7 +421,7 @@ static ES_Event DuringCalibrating( ES_Event Event)
     {
         // on exit, give the lower levels a chance to clean up first
         //RunLowerLevelSM(Event);
-				puts("Instructing MasterHSM to RunCalibratingSM(Event) from else if clause\r\n");
+//				puts("Instructing MasterHSM to RunCalibratingSM(Event) from else if clause\r\n");
         RunCalibratingSM(Event);
         // repeat for any concurrently running state machines
         // now do any local exit functionality
@@ -433,7 +431,7 @@ static ES_Event DuringCalibrating( ES_Event Event)
     {
         // run any lower level state machine
 			 // ReturnEvent = RunLowerLevelSM(Event);
-				puts("Instructing MasterHSM to RunCalibratingSM(Event) from else clause\r\n");
+//				puts("Instructing MasterHSM to RunCalibratingSM(Event) from else clause\r\n");
         ReturnEvent = RunCalibratingSM(Event);
       
         // repeat for any concurrent lower level machines
@@ -459,6 +457,7 @@ static ES_Event DuringTesting( ES_Event Event)
         
         // after that start any lower level machines that run in this state
         //StartLowerLevelSM( Event );
+				StartTestingSM(Event);
         // repeat the StartxxxSM() functions for concurrent state machines
         // on the lower level
     }
@@ -466,6 +465,7 @@ static ES_Event DuringTesting( ES_Event Event)
     {
         // on exit, give the lower levels a chance to clean up first
         //RunLowerLevelSM(Event);
+				RunTestingSM(Event);
         // repeat for any concurrently running state machines
         // now do any local exit functionality
       
@@ -474,7 +474,7 @@ static ES_Event DuringTesting( ES_Event Event)
     {
         // run any lower level state machine
         // ReturnEvent = RunLowerLevelSM(Event);
-      
+				ReturnEvent = RunTestingSM(Event);
         // repeat for any concurrent lower level machines
       
         // do any activity that is repeated as long as we are in this state
@@ -498,6 +498,7 @@ static ES_Event DuringCrimping( ES_Event Event)
         
         // after that start any lower level machines that run in this state
         //StartLowerLevelSM( Event );
+				StartCrimpingSM(Event);
         // repeat the StartxxxSM() functions for concurrent state machines
         // on the lower level
     }
@@ -505,6 +506,7 @@ static ES_Event DuringCrimping( ES_Event Event)
     {
         // on exit, give the lower levels a chance to clean up first
         //RunLowerLevelSM(Event);
+				RunCrimpingSM(Event);
         // repeat for any concurrently running state machines
         // now do any local exit functionality
       
@@ -513,7 +515,7 @@ static ES_Event DuringCrimping( ES_Event Event)
     {
         // run any lower level state machine
         // ReturnEvent = RunLowerLevelSM(Event);
-      
+				ReturnEvent = RunCrimpingSM(Event);
         // repeat for any concurrent lower level machines
       
         // do any activity that is repeated as long as we are in this state
@@ -537,6 +539,7 @@ static ES_Event DuringZeroingMotors( ES_Event Event)
         
         // after that start any lower level machines that run in this state
         //StartLowerLevelSM( Event );
+				StartZeroingMotorsSM(Event);
         // repeat the StartxxxSM() functions for concurrent state machines
         // on the lower level
     }
@@ -544,6 +547,7 @@ static ES_Event DuringZeroingMotors( ES_Event Event)
     {
         // on exit, give the lower levels a chance to clean up first
         //RunLowerLevelSM(Event);
+				RunZeroingMotorsSM(Event);
         // repeat for any concurrently running state machines
         // now do any local exit functionality
       
@@ -552,7 +556,7 @@ static ES_Event DuringZeroingMotors( ES_Event Event)
     {
         // run any lower level state machine
         // ReturnEvent = RunLowerLevelSM(Event);
-      
+				ReturnEvent = RunZeroingMotorsSM(Event);
         // repeat for any concurrent lower level machines
       
         // do any activity that is repeated as long as we are in this state

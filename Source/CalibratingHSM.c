@@ -49,7 +49,7 @@
 // define constants for the states for this machine
 // and any other local defines
 
-#define ENTRY_STATE STATE_ONE //STATE_ZERO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! CHANGE TO STATE_ONE?
+#define ENTRY_STATE STATE_ONE_CALIBRATING //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! STATE ZERO NEEDS TO CHANGE TO STATE_ONE_CALIBRATING
 
 /*---------------------------- Module Functions ---------------------------*/
 /* prototypes for private functions for this machine, things like during
@@ -91,8 +91,8 @@ ES_Event RunCalibratingSM( ES_Event CurrentEvent )
    switch ( CurrentState )
    {
 			puts("In switch statement in RunCalibratingSM in CalibratingHSM\r\n");
-       case STATE_ONE :       // If current state is state one
-				 puts("In STATE_ONE in the run mode of CalbratingHSM.c (lower level SM)\r\n");
+       case STATE_ONE_CALIBRATING :       // If current state is state one
+				 puts("In STATE_ONE_CALIBRATING in the run mode of CalbratingHSM.c (lower level SM)\r\n");
          // Execute During function for state one. ES_ENTRY & ES_EXIT are
          // processed here allow the lower level state machines to re-map
          // or consume the event
@@ -100,16 +100,16 @@ ES_Event RunCalibratingSM( ES_Event CurrentEvent )
          //process any events
          if ( CurrentEvent.EventType != ES_NO_EVENT ) //If an event is active
          {
-					 puts("Switching event in STATE_ONE of RunCalibratingSM in CalibratingHSM\r\n");
+					 puts("Switching event in STATE_ONE_CALIBRATING of RunCalibratingSM in CalibratingHSM\r\n");
             switch (CurrentEvent.EventType)
             {
                case ES_LOCK : //If event is event one
                   // Execute action function for state one : event one
-                  NextState = STATE_TWO;//Decide what the next state will be
+                  NextState = STATE_TWO_CALIBRATING;//Decide what the next state will be
                   // for internal transitions, skip changing MakeTransition
                   MakeTransition = true; //mark that we are taking a transition
-                  // if transitioning to a state with history change kind of entry
-                  EntryEventKind.EventType = ES_ENTRY_HISTORY;
+                  // if transitioning to a state with history change kind of entry (EITHER ES_ENTRY OR ES_ENTRY_HISTORY)
+                  EntryEventKind.EventType = ES_ENTRY;
                   // optionally, consume or re-map this event for the upper
                   // level state machine
                   ReturnEvent.EventType = ES_NO_EVENT;

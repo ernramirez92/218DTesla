@@ -18,4 +18,8 @@
 .\outputs\masterhsm.o: .\Headers\ES_Events.h
 .\outputs\masterhsm.o: .\Headers\ES_Timers.h
 .\outputs\masterhsm.o: .\Headers\MasterHSM.h
+.\outputs\masterhsm.o: .\Headers\WaitingForModeSelect.h
 .\outputs\masterhsm.o: .\Headers\CalibratingHSM.h
+.\outputs\masterhsm.o: .\Headers\TestingHSM.h
+.\outputs\masterhsm.o: .\Headers\CrimpingHSM.h
+.\outputs\masterhsm.o: .\Headers\ZeroingMotorsHSM.h

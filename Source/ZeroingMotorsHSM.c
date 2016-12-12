@@ -48,7 +48,7 @@
 // define constants for the states for this machine
 // and any other local defines
 
-#define ENTRY_STATE STATE_ZERO
+#define ENTRY_STATE STATE_ONE_ZEROING
 
 /*---------------------------- Module Functions ---------------------------*/
 /* prototypes for private functions for this machine, things like during
@@ -64,7 +64,7 @@ static ZeroingState_t CurrentState;
 /*------------------------------ Module Code ------------------------------*/
 /****************************************************************************
  Function
-    RunZeroingSM
+    RunZeroingMotorsSM
 
  Parameters
    ES_Event: the event to process
@@ -79,7 +79,7 @@ static ZeroingState_t CurrentState;
  Author
    J. Edward Carryer, 2/11/05, 10:45AM
 ****************************************************************************/
-ES_Event RunZeroingSM( ES_Event CurrentEvent )
+ES_Event RunZeroingMotorsSM( ES_Event CurrentEvent )
 {
    bool MakeTransition = false;/* are we making a state transition? */
    ZeroingState_t NextState = CurrentState;
@@ -88,8 +88,8 @@ ES_Event RunZeroingSM( ES_Event CurrentEvent )
 
    switch ( CurrentState )
    {
-       case STATE_ONE :       // If current state is state one
-				 puts("In STATE_ONE in the run mode of ZeroingMotorsHSM.c (lower level SM)\r\n");
+       case STATE_ONE_ZEROING :       // If current state is state one
+				 puts("In STATE_ONE_ZEROING in the run mode of ZeroingMotorsHSM.c (lower level SM)\r\n");
          // Execute During function for state one. ES_ENTRY & ES_EXIT are
          // processed here allow the lower level state machines to re-map
          // or consume the event
@@ -101,7 +101,7 @@ ES_Event RunZeroingSM( ES_Event CurrentEvent )
             {
                case ES_LOCK : //If event is event one
                   // Execute action function for state one : event one
-                  NextState = STATE_TWO;//Decide what the next state will be
+                  NextState = STATE_TWO_ZEROING;//Decide what the next state will be
                   // for internal transitions, skip changing MakeTransition
                   MakeTransition = true; //mark that we are taking a transition
                   // if transitioning to a state with history change kind of entry
@@ -121,19 +121,19 @@ ES_Event RunZeroingSM( ES_Event CurrentEvent )
     {
        //   Execute exit function for current state
        CurrentEvent.EventType = ES_EXIT;
-       RunZeroingSM(CurrentEvent);
+       RunZeroingMotorsSM(CurrentEvent);
 
        CurrentState = NextState; //Modify state variable
 
        //   Execute entry function for new state
        // this defaults to ES_ENTRY
-       RunZeroingSM(EntryEventKind);
+       RunZeroingMotorsSM(EntryEventKind);
      }
      return(ReturnEvent);
 }
 /****************************************************************************
  Function
-     StartZeroingSM
+     StartZeroingMotorsSM
 
  Parameters
      None
@@ -148,7 +148,7 @@ ES_Event RunZeroingSM( ES_Event CurrentEvent )
  Author
      J. Edward Carryer, 2/18/99, 10:38AM
 ****************************************************************************/
-void StartZeroingSM ( ES_Event CurrentEvent )
+void StartZeroingMotorsSM ( ES_Event CurrentEvent )
 {
    // to implement entry to a history state or directly to a substate
    // you can modify the initialization of the CurrentState variable
@@ -159,12 +159,12 @@ void StartZeroingSM ( ES_Event CurrentEvent )
         CurrentState = ENTRY_STATE;
    }
    // call the entry function (if any) for the ENTRY_STATE
-   RunZeroingSM(CurrentEvent);
+   RunZeroingMotorsSM(CurrentEvent);
 }
 
 /****************************************************************************
  Function
-     QueryZeroingSM
+     QueryZeroingMotorsSM
 
  Parameters
      None
@@ -179,7 +179,7 @@ void StartZeroingSM ( ES_Event CurrentEvent )
  Author
      J. Edward Carryer, 2/11/05, 10:38AM
 ****************************************************************************/
-ZeroingState_t QueryZeroingSM ( void )
+ZeroingState_t QueryZeroingMotorsSM ( void )
 {
    return(CurrentState);
 }

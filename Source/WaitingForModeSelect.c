@@ -48,7 +48,7 @@
 // define constants for the states for this machine
 // and any other local defines
 
-#define ENTRY_STATE STATE_ZERO
+#define ENTRY_STATE STATE_ONE_WAITING
 
 /*---------------------------- Module Functions ---------------------------*/
 /* prototypes for private functions for this machine, things like during
@@ -88,8 +88,8 @@ ES_Event RunWaitingForModeSelectSM( ES_Event CurrentEvent )
 
    switch ( CurrentState )
    {
-       case STATE_ONE :       // If current state is state one
-				 puts("In STATE_ONE in the run mode of WaitingForModeSelect.c (lower level SM)\r\n");
+       case STATE_ONE_WAITING :       // If current state is state one
+				 puts("In STATE_ONE_WAITING in the run mode of WaitingForModeSelect.c (lower level SM)\r\n");
          // Execute During function for state one. ES_ENTRY & ES_EXIT are
          // processed here allow the lower level state machines to re-map
          // or consume the event
@@ -101,7 +101,7 @@ ES_Event RunWaitingForModeSelectSM( ES_Event CurrentEvent )
             {
                case ES_LOCK : //If event is event one
                   // Execute action function for state one : event one
-                  NextState = STATE_TWO;//Decide what the next state will be
+                  NextState = STATE_TWO_WAITING;//Decide what the next state will be
                   // for internal transitions, skip changing MakeTransition
                   MakeTransition = true; //mark that we are taking a transition
                   // if transitioning to a state with history change kind of entry
